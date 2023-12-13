@@ -10,12 +10,11 @@ warnings.filterwarnings("ignore")
 
 # Simple way to get the OS name (e.g., 'posix', 'nt', 'java')
 if os.name == "nt":
-    plt.rcParams["font.family"] = "Malgun Gothic"  # 폰트를 맑은 고딕으로 설정
+    plt.rcParams["font.family"] = "Malgun Gothic"  # 윈도우 환경에서 plt 폰트를 맑은 고딕으로 설정
 else:
-    plt.rcParams["font.family"] = "NanumGothic"  # 리눅스에서는 나눔고딕으로 설정
-
-fm = matplotlib.font_manager.FontManager()
-assert plt.rcParams["font.family"][0] in fm.get_font_names(), f"Font {plt.rcParams['font.family']} is not available"
+    fm = matplotlib.font_manager.FontManager()
+    if "NanumGothic" in fm.get_font_names():
+        plt.rcParams["font.family"] = "NanumGothic"  # 리눅스 환경에서 나눔고딕 폰트가 있으면 설정
 
 local_folder = Path("datatest")
 github_folder = Path("https://raw.githubusercontent.com/dglee6257/Dataprocessing/main/datatest/")
