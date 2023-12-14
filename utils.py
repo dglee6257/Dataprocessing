@@ -15,10 +15,14 @@ else:
     fm = matplotlib.font_manager.FontManager()
     if "NanumGothic" in fm.get_font_names():
         plt.rcParams["font.family"] = "NanumGothic"  # 리눅스 환경에서 나눔고딕 폰트가 있으면 설정
+    else:
+        print(f"Matplotlib 그래프 객체에서 한글이 지원되지 않습니다.")    
 
 local_folder = Path("datatest")
 github_url = "https://raw.githubusercontent.com/dglee6257/Dataprocessing/main/datatest/"
 
+if not os.path.isdir(local_folder):
+    os.mkdir(local_folder)
 
 def read_csv(file, **kwargs) -> pd.DataFrame:
     """read csv file from local folder if exists, otherwise from github folder"""
