@@ -17,24 +17,24 @@ else:
         plt.rcParams["font.family"] = "NanumGothic"  # 리눅스 환경에서 나눔고딕 폰트가 있으면 설정
 
 local_folder = Path("datatest")
-github_folder = Path("https://raw.githubusercontent.com/dglee6257/Dataprocessing/main/datatest/")
+github_url = "https://raw.githubusercontent.com/dglee6257/Dataprocessing/main/datatest/"
 
 
-def read_csv(path, **kwargs) -> pd.DataFrame:
+def read_csv(file, **kwargs) -> pd.DataFrame:
     """read csv file from local folder if exists, otherwise from github folder"""
     try:
-        df = pd.read_csv(local_folder / path, **kwargs)
+        df = pd.read_csv(local_folder / file, **kwargs)
     except FileNotFoundError:
-        df = pd.read_csv(github_folder / path, **kwargs)
+        df = pd.read_csv(github_url + file, **kwargs)
     return df
 
 
-def read_excel(path, **kwargs) -> pd.DataFrame:
-    """read csv file from local folder if exists, otherwise from github folder"""
+def read_excel(file, **kwargs) -> pd.DataFrame:
+    """read excel file from local folder if exists, otherwise from github folder"""
     try:
-        df = pd.read_excel(local_folder / path, **kwargs)
+        df = pd.read_excel(local_folder / file, **kwargs)
     except FileNotFoundError:
-        df = pd.read_excel(github_folder / path, **kwargs)
+        df = pd.read_excel(github_url + file, **kwargs)
     return df
 
 
